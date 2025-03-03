@@ -1,0 +1,190 @@
+{
+	"main": [
+		{
+			"label": "Employers",
+			"url": "#",
+			"submenu": [
+				{
+					"label": "Apprenticeships Info",
+					"url": "/employers"
+				},
+				{
+					"label": "Upskilling Staff",
+					"url": "/upskilling-staff"
+				}
+			]
+		},
+		{
+			"label": "apprenticeships",
+			"url": "#",
+			"submenu": [
+				{
+					"label": "About Apprenticeships",
+					"url": "/apprenticeships"
+				},
+				{
+					"label": "Vacancies",
+					"url": "/jobs/apprenticeship-vacancies/"
+				}
+			]
+		},
+		{
+			"label": "courses",
+			"url": "",
+			"submenu": [
+				{
+					"label": "Course Directory",
+					"url": "/course-directory"
+				},
+				{
+					"label": "Agile Project Management",
+					"url": "/agile-project-management"
+				},
+				{
+					"label": "Cybersecurity",
+					"url": "/master-cybersecurity"
+				},
+				{
+					"label": "Data Analysis & Engineering",
+					"url": "/master-data-analysis-and-engineering"
+				},
+				{
+					"label": "DevOps & Cloud Computing",
+					"url": "/master-devops-and-cloud-computing/"
+				},
+				{
+					"label": "Product Management & Ownership",
+					"url": "/master-product-management-and-ownership"
+				},
+				{
+					"label": "Software Development",
+					"url": "/master-software-engineering/"
+				},
+				{
+					"label": "Software Testing",
+					"url": "/master-qa-and-software-testing"
+				},
+
+				{
+					"label": "UX and CX Design",
+					"url": "/master-ux-and-cx-design"
+				},
+				{
+					"label": "West Yorkshire",
+					"url": "/west-yorkshire"
+				}
+
+			]
+		},
+		{
+			"label": "about us",
+			"url": "#",
+			"submenu": [
+				{
+					"label": "About TCG",
+					"url": "/about/"
+				},
+				{
+					"label": "Work With Us",
+					"url": "/jobs/"
+				},
+				{
+					"label": "blog",
+					"url": "/blog"
+				},
+				{
+					"label": "contact us",
+					"url": "/contact-us"
+				}
+			]
+		}
+	],
+
+	"footer": [
+		{
+			"title": "Quick Links",
+			"links": [
+				{
+					"label": "Sitemap",
+					"url": "/sitemap.xml"
+				},
+				{
+					"label": "Vacancies",
+					"url": "/jobs/"
+				},
+				{
+					"label": "Terms and Conditions",
+					"url": "/pdf/Terms_and_Conditions_v1.4.pdf"
+				},
+				{
+					"label": "Complaints & Compliments",
+					"url": "/pdf/Complaints_Compliments_Policy_v1.5.pdf"
+				},
+				{
+					"label": "Cookies",
+					"url": "/pdf/Cookie_Policy_v1.4.pdf"
+				},
+				{
+					"label": "Safeguarding Policy",
+					"url": "/pdf/Safeguarding_Policy_v1.8.pdf"
+				},
+				{
+					"label": "Prevent Duty Policy",
+					"url": "/pdf/PREVENT_Duty_Policy_v1.7.pdf"
+				},
+				{
+					"label": "Privacy",
+					"url": "/pdf/Privacy_Policy_v1.4.pdf"
+				},
+				{
+					"label": "Modern Slavery",
+					"url": "/pdf/Modern_Slavery_v1.4.pdf"
+				},
+				{
+					"label": "Careers Policy",
+					"url": "/pdf/careers_education_policy.pdf"
+				},
+				{
+					"label": "All Policies",
+					"url": "/policies"
+				},
+				{
+					"label": "Reviews",
+					"url": "/reviews"
+				}
+			]
+		}
+	],
+	"social_links": [
+		{
+			"title": "linkedin",
+			"url": "https://www.linkedin.com/company/the-coders-guild",
+			"icon": "fa-linkedin-in"
+		},
+		{
+			"title": "twitter",
+			"url": "https://twitter.com/the_codersguild",
+			"icon": "fa-twitter"
+		},
+		{
+			"title": "instagram",
+			"url": "https://www.instagram.com/thecodersguild/",
+			"icon": "fa-instagram"
+		},
+		{
+			"title": "facebook",
+			"url": "https://www.facebook.com/TheCodersGuild/",
+			"icon": "fa-facebook-f"
+		},
+		{
+			"title": "youtube",
+			"url": "https://www.youtube.com/channel/UC_By6GiE5aVoMyoTLr5lGZA",
+			"icon": "fa-youtube"
+		},
+		{
+			"title": "github",
+			"url": "https://github.com/thecodersguilduk",
+			"icon": "fa-github"
+		}
+	]
+}

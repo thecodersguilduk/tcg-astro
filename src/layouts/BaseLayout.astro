@@ -1,0 +1,38 @@
+---
+layout: null;
+import navigation from "../data/navigation.json";
+import Head from "../components/Head.astro";
+//import Modals from "../components/Modals.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const title = "Test";
+const description = "another test";
+---
+
+<!doctype html>
+<html lang="en" class="min-h-full antialiased">
+  <head>
+    <!-- SEO Metadata -->
+    <Head title={title} description={description} />
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KQ9NJWF"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+
+    <a class="sr-only" href="#main">Skip to content</a>
+
+    <div id="wrapper" class="wrapper md:pb-0 flex flex-col relative min-h-screen">
+      <!-- <Modals /> -->
+      <Header nav={navigation.main} />
+      <slot />
+      <Footer footerNav={navigation.footer} socialLinks={navigation.social_links} />
+    </div>
+  </body>
+</html>

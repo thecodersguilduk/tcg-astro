@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+    --color-transparent: transparent;
+    
+    --color-black: #000;
+    --color-white: #fff;
+    
+    --color-lightblue-500: #16AEDB;
+    
+    --color-grey-50: #f2f2f2;
+    --color-grey-100: #f4f4f4;
+    --color-grey-200: #dedede;
+    --color-grey-300: #707070;
+    --color-grey-400: #cbd5e0;
+    --color-grey-500: #a0aec0;
+    --color-grey-600: #718096;
+    --color-grey-700: #4a5568;
+    --color-grey-800: #2d3748;
+    --color-grey-900: #1a202c;
+    --color-grey-1000: #949494;
+    --color-grey-2000: #e4e4e4;
+    
+    --color-red-100: #c94b62;
+    --color-red-200: #e03f67;
+    --color-red-300: #a8183c;
+    --color-red-400: #fc8181;
+    --color-red-500: #f56565;
+    --color-red-600: #e53e3e;
+    --color-red-700: #c53030;
+    --color-red-800: #9b2c2c;
+    --color-red-900: #BB4E69;
+    --color-red-1000: #AD556A;
+    
+    --color-orange-100: #fffaf0;
+    --color-orange-200: #feebc8;
+    --color-orange-300: #fbd38d;
+    --color-orange-400: #f6ad55;
+    --color-orange-500: #ed8936;
+    --color-orange-600: #dd6b20;
+    --color-orange-700: #c05621;
+    --color-orange-800: #9c4221;
+    --color-orange-900: #7b341e;
+    
+    --color-yellow-100: #f2a541;
+    --color-yellow-200: #ecb22d;
+    --color-yellow-300: #cc7b00;
+    --color-yellow-400: #f6e05e;
+    --color-yellow-500: #ecc94b;
+    --color-yellow-600: #d69e2e;
+    --color-yellow-700: #b7791f;
+    --color-yellow-800: #975a16;
+    --color-yellow-900: #744210;
+    
+    --color-brown-100: #a18276;
+    
+    --color-green-100: #86ba90;
+    --color-green-200: #3cb187;
+    --color-green-300: #118859;
+    --color-green-400: #68d391;
+    --color-green-500: #48bb78;
+    --color-green-600: #38a169;
+    --color-green-700: #2f855a;
+    --color-green-800: #276749;
+    --color-green-900: #22543d;
+    
+    --color-teal-100: #e6fffa;
+    --color-teal-200: #b2f5ea;
+    --color-teal-300: #81e6d9;
+    --color-teal-400: #4fd1c5;
+    --color-teal-500: #38b2ac;
+    --color-teal-600: #319795;
+    --color-teal-700: #2c7a7b;
+    --color-teal-800: #285e61;
+    --color-teal-900: #234e52;
+    
+    --color-blue-50: rgba(22, 174, 219, 0.15);
+    --color-blue-100: #16aedb;
+    --color-blue-200: #2574a9;
+    --color-blue-300: #064789;
+    --color-blue-400: #63b3ed;
+    --color-blue-500: #4299e1;
+    --color-blue-600: #3182ce;
+    --color-blue-700: #2b6cb0;
+    --color-blue-800: #2c5282;
+    --color-blue-900: #2a4365;
+    
+    --color-indigo-100: #ebf4ff;
+    --color-indigo-200: #c3dafe;
+    --color-indigo-300: #a3bffa;
+    --color-indigo-400: #7f9cf5;
+    --color-indigo-500: #667eea;
+    --color-indigo-600: #5a67d8;
+    --color-indigo-700: #4c51bf;
+    --color-indigo-800: #434190;
+    --color-indigo-900: #3c366b;
+    
+    --color-purple-100: #a670ae;
+    --color-purple-200: #884193;
+    --color-purple-300: #d6bcfa;
+    --color-purple-400: #b794f4;
+    --color-purple-500: #9f7aea;
+    --color-purple-600: #805ad5;
+    --color-purple-700: #6b46c1;
+    --color-purple-800: #553c9a;
+    --color-purple-900: #5350A5;
+    --color-purple-1000: #54509F;
+    
+    --color-pink-100: #fff5f7;
+    --color-pink-200: #fed7e2;
+    --color-pink-300: #fbb6ce;
+    --color-pink-400: #f687b3;
+    --color-pink-500: #eb5286;
+    --color-pink-600: #d53f8c;
+    --color-pink-700: #b83280;
+    --color-pink-800: #97266d;
+    --color-pink-900: #702459;
+    
+    --font-heading: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-paragraph: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --text-xs: 11px;
+    --text-sm: 14px;
+    --text-md: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+    --text-4xl: 30px;
+    --text-5xl: 40px;
+    --text-6xl: 60px;
+    --text-9xl: 95px;
+}
+
+
+  

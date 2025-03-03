@@ -1,11 +1,49 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/BaseLayout.astro";
+import Stats from "../components/home/Stats.astro";
+import Intro from "../components/home/Intro.astro";
+import TabbedCaseStudies from "../components/home/TabbedCaseStudies";
+import Services from "../components/home/Services.astro";
+import SocialMission from "../components/home/SocialMission.astro";
+import BlogSection from "../components/BlogSection.astro";
+import Newsletter from "../components/Newsletter.astro";
+import { client } from "../data/sanity";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const fetchBlogs = async () => {
+  const query = `*[_type == "blog" && !(_id in path("drafts.**"))] {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    "mainImage": mainImage.asset->url,
+    excerpt,
+    time,
+    authors[]->{name},
+    "avatar": authors[0]->image.asset->url,
+    categories[]->{name},
+    blogPortableText[]{
+      ...,
+      _type == "calendlyLink" => {
+        "calendlyLink": calendlyLink 
+      }
+    },
+    "tags": tags[].value
+} | order(publishedAt desc)[0..2]`;
+
+  const data = await client.fetch(query);
+
+  return data;
+};
+
+const blogs = await fetchBlogs();
 ---
 
 <Layout>
-	<Welcome />
+  <Stats />
+  <Intro />
+  <TabbedCaseStudies client:load />
+  <SocialMission />
+  <Services />
+  <BlogSection blogs={blogs} />
+  <Newsletter />
 </Layout>
