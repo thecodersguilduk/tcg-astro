@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
 import Stats from "../components/home/Stats.astro";
 import Intro from "../components/home/Intro.astro";
 import TabbedCaseStudies from "../components/home/TabbedCaseStudies";
@@ -7,6 +8,7 @@ import Services from "../components/home/Services.astro";
 import SocialMission from "../components/home/SocialMission.astro";
 import BlogSection from "../components/BlogSection.astro";
 import Newsletter from "../components/Newsletter.astro";
+import navigation from "../data/navigation.json";
 import { client } from "../data/sanity";
 
 const fetchBlogs = async () => {
@@ -39,6 +41,7 @@ const blogs = await fetchBlogs();
 ---
 
 <Layout>
+  <Header nav={navigation.main} />
   <Stats />
   <Intro />
   <TabbedCaseStudies client:load />

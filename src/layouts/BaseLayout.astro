@@ -3,19 +3,19 @@ layout: null;
 import navigation from "../data/navigation.json";
 import Head from "../components/Head.astro";
 //import Modals from "../components/Modals.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-const title = "Test";
-const description = "another test";
+const title = "The Coders Guild";
+
+const { description, metaDescription, excerpt } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="min-h-full antialiased">
   <head>
     <!-- SEO Metadata -->
-    <Head title={title} description={description} />
+    <Head title={title} description={description} metaDescription={metaDescription ? metaDescription : excerpt} />
   </head>
   <body>
     <noscript
@@ -30,7 +30,6 @@ const description = "another test";
 
     <div id="wrapper" class="wrapper md:pb-0 flex flex-col relative min-h-screen">
       <!-- <Modals /> -->
-      <Header nav={navigation.main} />
       <slot />
       <Footer footerNav={navigation.footer} socialLinks={navigation.social_links} />
     </div>

@@ -1,5 +1,5 @@
 ---
-const { metaTitle, title, siteName } = Astro.props;
+const { metaTitle, metaDescription, excerpt, title, siteName } = Astro.props;
 const pageTitle = metaTitle ? `${metaTitle} | ${siteName}` : `${title} | ${siteName}`;
 import global from "../styles/global.css";
 ---
@@ -46,11 +46,8 @@ import global from "../styles/global.css";
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{metaTitle ? `${metaTitle} | ${siteName}` : `${title} | ${siteName}`}</title>
-  <meta
-    name="description"
-    content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}"
-  />
+  <title>{metaTitle ? `${metaTitle} | ${siteName}` : `${title} | ${metaDescription}`}</title>
+  <meta name="description" content={metaDescription ? metaDescription : excerpt ? excerpt : ""} />
   <meta name="robots" content="index,follow" />
 
   <script src="https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js"></script>

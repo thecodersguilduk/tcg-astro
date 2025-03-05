@@ -1,0 +1,64 @@
+---
+//@ts-ignore
+import Layout from "../../layouts/BaseLayout.astro";
+import InternalHero from "../../components/global/InternalHero";
+import SanityContent from "../../components/global/SanityContent";
+import { client } from "../../data/sanity";
+import { format } from "date-fns";
+
+interface Blog {
+  _id: string;
+  title: string;
+  publishedAt: string;
+  mainImage: string;
+  excerpt: string;
+  authors: { name: string }[];
+  categories: { name: string }[];
+  blogPortableText: any;
+  slug: { current: string };
+}
+
+// Define getStaticPaths to generate all blog pages at build time
+export async function getStaticPaths() {
+  const query = `*[_type == "blog"] { slug }`;
+  const blogs = await client.fetch(query);
+
+  return blogs.map((blog: Blog) => ({
+    params: { slug: blog.slug.current },
+  }));
+}
+
+// Get the blog slug from the URL
+const { slug } = Astro.params;
+
+const query = `*[_type == "blog" && slug.current == $slug][0] {
+  title,
+  publishedAt,
+  "mainImage": mainImage.asset->url,
+  excerpt,
+  authors[]->{name},
+  categories[]->{name},
+  blogPortableText
+}`;
+
+const blog = await client.fetch(query, { slug });
+
+if (!blog) {
+  throw new Error(`Blog post not found: ${slug}`);
+}
+const { title, publishedAt, mainImage, excerpt, authors, categories, blogPortableText } = blog;
+---
+
+<Layout excerpt={excerpt}>
+  <InternalHero title={title} excerpt={excerpt} image={mainImage} />
+  <article class="max-w-3xl mx-auto py-10">
+    <h1 class="text-4xl font-bold mb-4">{blog.title}</h1>
+    <p class="text-gray-500">{format(new Date(blog.publishedAt), "MMMM dd, yyyy")}</p>
+
+    <img src={blog.mainImage} alt={blog.title} class="w-full h-80 object-cover rounded-md my-6" />
+
+    <div id="content" class="max-w-3xl mx-auto py-10 content">
+      <SanityContent content={blog.blogPortableText} />
+    </div>
+  </article>
+</Layout>

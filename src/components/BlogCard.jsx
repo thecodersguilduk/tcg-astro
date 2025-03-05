@@ -15,7 +15,7 @@ const BlogCard = ({ blog }) => {
                     </a>
                 </p>
             ))}
-            <a href="#" className="mt-2 block">
+            <a href={`/blog/${blog.slug.current}`} className="mt-2 block">
                 <p className="text-xl font-semibold text-gray-900">{blog.title}</p>
                 <p className="mt-3 text-base text-gray-500">
                 {blog.excerpt}
