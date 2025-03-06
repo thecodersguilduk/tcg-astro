@@ -5,6 +5,7 @@ import InternalHero from "../../components/global/InternalHero";
 import SanityContent from "../../components/global/SanityContent";
 import { client } from "../../data/sanity";
 import { format } from "date-fns";
+import Pagination from "../../components/global/Pagination";
 
 interface Blog {
   _id: string;
@@ -41,24 +42,45 @@ const query = `*[_type == "blog" && slug.current == $slug][0] {
   blogPortableText
 }`;
 
+const allBlogsQuery = `*[_type == "blog"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug
+}`;
+
+const allBlogs = await client.fetch(allBlogsQuery);
 const blog = await client.fetch(query, { slug });
 
 if (!blog) {
   throw new Error(`Blog post not found: ${slug}`);
 }
 const { title, publishedAt, mainImage, excerpt, authors, categories, blogPortableText } = blog;
+
+// Find the index of the current post in the list
+const currentIndex = allBlogs.findIndex((b) => b.slug.current === slug);
+
+// Get the **previous** and **next** posts
+const previousPost = currentIndex > 0 ? allBlogs[currentIndex - 1] : null;
+const nextPost = currentIndex < allBlogs.length - 1 ? allBlogs[currentIndex + 1] : null;
 ---
 
 <Layout excerpt={excerpt}>
   <InternalHero title={title} excerpt={excerpt} image={mainImage} />
   <article class="max-w-3xl mx-auto py-10">
-    <h1 class="text-4xl font-bold mb-4">{blog.title}</h1>
-    <p class="text-gray-500">{format(new Date(blog.publishedAt), "MMMM dd, yyyy")}</p>
+    <h1 class="text-4xl font-bold mb-4">{title}</h1>
+    <p class="text-gray-500">{format(new Date(publishedAt), "MMMM dd, yyyy")}</p>
 
-    <img src={blog.mainImage} alt={blog.title} class="w-full h-80 object-cover rounded-md my-6" />
+    <img src={mainImage} alt={title} class="w-full h-80 object-cover rounded-md my-6" />
 
     <div id="content" class="max-w-3xl mx-auto py-10 content">
-      <SanityContent content={blog.blogPortableText} />
+      <SanityContent content={blogPortableText} />
     </div>
+
+    <Pagination
+      prevUrl={previousPost?.slug?.current}
+      nextUrl={nextPost?.slug?.current}
+      prevBtnText={previousPost?.title}
+      nextBtnText={nextPost?.title}
+    />
   </article>
 </Layout>

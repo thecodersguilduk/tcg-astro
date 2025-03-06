@@ -3,7 +3,7 @@ import { client } from "../data/sanity.js";
 
 // Define schema for your blog posts
 const blog = defineCollection({
-  // Here, we will mock the Sanity data loader, you can directly fetch from Sanity using client.fetch() if preferred
+  
   loader: async () => {
     const query = `*[_type == "blog" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
       _id,
@@ -16,7 +16,7 @@ const blog = defineCollection({
       categories[]->{name}
     }`;
     
-    const posts = await client.fetch(query); // Assuming `client` is your Sanity client
+    const posts = await client.fetch(query);
     return posts.map(post => ({
         id: post._id,
         ...post,

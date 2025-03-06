@@ -1,8 +1,8 @@
-const Pagination = ({prevUrl, nextUrl, contentType}) => {
+const Pagination = ({prevUrl, nextUrl, prevBtnText, nextBtnText}) => {
   return (
-    <nav aria-label="pagination" className="flex justify-between py-4 relative w-full">
-        {prevUrl && ( <a className="absolute left-0" href={prevUrl}>Newer {contentType}</a>)}
-        {nextUrl && ( <a className="absolute right-0" href={nextUrl}>Older {contentType}</a>)}
+    <nav aria-label="pagination" className="grid grid-cols-2 justify-between py-4 relative w-full gap-4 text-wrap">
+        {prevUrl && ( <a className="col-start-1" href={prevUrl}>${prevBtnText}</a>)}
+        {nextUrl && ( <a className="col-start-2" href={nextUrl}>{nextBtnText} </a>)}
     </nav>
   )
 };
