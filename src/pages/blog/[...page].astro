@@ -27,7 +27,7 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 
-console.log(page);
+// console.log(page);
 ---
 
 <Layout>
@@ -81,6 +81,6 @@ console.log(page);
         ))
       }
     </div>
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} contentType={"posts"} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} nextBtnText={"Older Posts"} contentType={"posts"} />
   </section>
 </Layout>

@@ -1,0 +1,149 @@
+---
+// @ts-ignore
+import Layout from "../../layouts/BaseLayout.astro";
+import InternalHero from "../../components/global/InternalHero";
+import SanityContent from "../../components/global/SanityContent";
+import Trainers from "../../components/global/Trainers";
+import LogoCloud from "../../components/global/LogoCloud";
+import CourseContent from "../../components/courses/CourseContent";
+import { client } from "../../data/sanity";
+import { format } from "date-fns";
+import Pagination from "../../components/global/Pagination";
+
+// Define the Course interface
+interface Course {
+  _id: string;
+  title: string;
+  subTitle: string;
+  featuredImage: string;
+  excerpt: string;
+  delivery: any;
+  slug: { current: string };
+  courseType: any[];
+  courseTopics: any[];
+  duration: any[];
+  trainers: any[];
+  logos: any[];
+  instances: any[];
+  benefits: any[];
+  testimonials: any[];
+}
+
+// Define getStaticPaths to generate all course pages at build time
+export async function getStaticPaths() {
+  const query = `*[_type == "course"] { slug }`;
+  const courses = await client.fetch(query);
+
+  return courses.map((course: Course) => ({
+    params: { slug: course.slug.current },
+  }));
+}
+
+// Get the course slug from the URL
+const { slug } = Astro.params;
+
+const courseQuery = `*[_type == "course" && slug.current == $slug][0] {
+  ...,
+  title,
+  "featuredImage": {
+		"url": featuredImage.asset->url,
+		"alt": featuredImage.alt,
+		"license": featuredImage.license,
+		"licenseUrl": featuredImage.licenseUrl,
+		"licenseSite": featuredImage.licenseSite
+	},
+  "mainImage": mainImage.asset->url,
+  excerpt,
+  trainers[]->{
+    name,
+    occupation,
+    "image": image.asset->url
+  },
+  courseType[]->{courseType},
+  duration,
+  courseTopics,
+  delivery,
+  benefits[]->{
+		'title': title,
+		'image': image.asset->url
+	},
+  who_is_this_for,
+  "testimonials": testimonials[]->{
+    'id': _id,
+		'testimonial': testimonial,
+		'avatar': avatar.asset->url,
+		'client': client,
+		'occupation': occupation
+	  }
+}`;
+
+const allCoursesQuery = `*[_type == "course"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug
+}`;
+
+// Fetch all courses and the current course
+const [allCourses, course] = await Promise.all([client.fetch(allCoursesQuery), client.fetch(courseQuery, { slug })]);
+
+if (!course) {
+  throw new Error(`Course not found: ${slug}`);
+}
+
+const {
+  title,
+  metaDescription,
+  featuredImage,
+  excerpt,
+  subtitle,
+  trainers,
+  courseType,
+  duration,
+  courseTopics,
+  delivery,
+  who_is_this_for,
+  benefits,
+  what_you_will_get,
+  course_outline,
+  course_breakdown,
+  pre_requisites,
+  testimonials,
+} = course;
+
+// Find the index of the current course in the list
+const currentIndex = allCourses.findIndex((c) => c.slug.current === slug);
+
+// Get the previous and next courses
+const previousCourse = currentIndex > 0 ? allCourses[currentIndex - 1] : null;
+const nextCourse = currentIndex < allCourses.length - 1 ? allCourses[currentIndex + 1] : null;
+const courseCta = [
+  {
+    active: true,
+    text: "CTA text here",
+    link: "https://t-c-g.pro.typeform.com/BCEligiblity",
+  },
+];
+---
+
+<Layout excerpt={metaDescription}>
+  <InternalHero title={title} excerpt={subtitle} image={`${featuredImage.url}`} cta={courseCta} />
+  <article class="max-w-7xl mx-auto py-10">
+    <h2 class="text-4xl font-bold mb-4">{title}</h2>
+
+    <img src={featuredImage.url} alt={title} class="w-full h-96 object-cover rounded-md" />
+
+    <div id="content" class="max-w-7xl mx-auto content">
+      <CourseContent>
+        <SanityContent content={delivery} />
+        <SanityContent content={who_is_this_for} />
+        <SanityContent content={what_you_will_get} />
+        <SanityContent content={course_outline} />
+        <SanityContent content={course_breakdown} />
+        <SanityContent content={pre_requisites} />
+      </CourseContent>
+
+      <LogoCloud logos={benefits} heading="Benefits to our Training" />
+      <Trainers trainers={trainers} />
+    </div>
+  </article>
+</Layout>

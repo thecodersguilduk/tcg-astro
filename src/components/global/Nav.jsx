@@ -5,7 +5,7 @@ const Nav = ({menu}) => {
     <>
     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
+        <a href="/" class="-m-1.5 p-1.5">
           <span class="sr-only">The Coders Guild</span>
           <img class="h-8 w-auto" src={logo.src} alt="The Coders Guild logo" />
         </a>
@@ -29,7 +29,7 @@ const Nav = ({menu}) => {
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         {menu.map(item => (
-          <a key={item.url} href={item.url} class="text-sm/6 font-semibold leading-6 text-blue-200">
+          <a key={item.url} href={item.url} class="text-sm/6 font-semibold leading-6 text-white">
             {item.label}
           </a>
         ))}

@@ -1,7 +1,8 @@
 import navigation from "../../data/navigation.json";
 import Nav from "./Nav";
+import LogoCloud from "./LogoCloud.jsx";
 
-export default function InternalHero({ title, excerpt, image }) {
+export default function InternalHero({ title, excerpt, image, cta, logos }) {
   return (
     <div className="relative overflow-hidden bg-white">
       <div aria-hidden="true" className="hidden lg:absolute lg:inset-0 lg:block">
@@ -32,9 +33,9 @@ export default function InternalHero({ title, excerpt, image }) {
       <div className="relative pb-16 pt-6 sm:pb-24 lg:pb-32">
         <Nav menu={navigation.main} />
 
-        <main className="mx-auto mt-16 max-w-7xl px-4 px-6 sm:mt-24 lg:mt-32">
+        <header className="mx-auto mt-16 max-w-7xl px-4 px-6 sm:mt-24 lg:mt-32">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-            <div className="sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left">
+            <div className="flex flex-col gap-4 items-start sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left">
               <h1>
                 <span className="mt-1 block text-4xl font-bold sm:text-5xl xl:text-6xl">
                   {title}
@@ -44,6 +45,17 @@ export default function InternalHero({ title, excerpt, image }) {
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                   {excerpt}
                 </p>
+              )}
+              {cta && (
+                cta.map((item) => (
+                  item.active && (
+                    <a href={item.link} class="bg-gradient-to-r from-blue-200 to-blue-100 py-2 px-4 text-white font-bold rounded">{ item.text }</a>
+                  )
+                  
+                 ))
+              )}
+              {logos && (
+                <LogoCloud logos={logos} />
               )}
               
             </div>
@@ -73,14 +85,14 @@ export default function InternalHero({ title, excerpt, image }) {
               </svg>
               <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                   <img
-                    alt=""
+                    alt={title}
                     src={image}
                     className="w-full"
                   />
               </div>
             </div>
           </div>
-        </main>
+        </header>
       </div>
     </div>
   )

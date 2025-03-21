@@ -30,7 +30,7 @@
 		},
 		{
 			"label": "courses",
-			"url": "",
+			"url": "/courses/",
 			"submenu": [
 				{
 					"label": "Course Directory",
@@ -77,8 +77,8 @@
 			]
 		},
 		{
-			"label": "about us",
-			"url": "#",
+			"label": "Blog",
+			"url": "/blog",
 			"submenu": [
 				{
 					"label": "About TCG",

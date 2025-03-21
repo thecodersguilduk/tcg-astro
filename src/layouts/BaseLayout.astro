@@ -15,7 +15,11 @@ const { description, metaDescription, excerpt } = Astro.props;
 <html lang="en" class="min-h-full antialiased">
   <head>
     <!-- SEO Metadata -->
-    <Head title={title} description={description} metaDescription={metaDescription ? metaDescription : excerpt} />
+    <Head
+      title={title}
+      description={description}
+      metaDescription={metaDescription ? metaDescription : "Please set a meta description in Sanity"}
+    />
   </head>
   <body>
     <noscript

@@ -162,11 +162,11 @@
 
 		> li::before {
 			content: counter(item);
-			font-size: 1.5rem;
+      font-size: 1.5rem;
 			color: #2574a9;
 			line-height: 1.5;
 			font-weight: bold;
-			background-image: url('../assets/patterns/Chevron-Left-list.svg');
+			background-image: url('../assets/patterns/Numbered_List_Pattern.svg');
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
